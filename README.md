@@ -14,4 +14,6 @@ We should avoid these issues from Milo V1.5 before releasing Milo V2.0
   * Work with kit providers to get the correct inserts.
   * Try and avoid vendor-specific printed parts _if at all possible_.
 * VFD configuration, particularly when kits are released with a "preconfigured" VFD that is _not_ preconfigured (correctly).
-  * Modbus configuration of VFD? 
+  * Modbus configuration of VFD?
+* Think about increasing spindle mounting plate width to 120mm to accommodate 98mm spacing on readily available spindle clamps.
+* Spec threaded lead-screw nuts as part of BOM.
