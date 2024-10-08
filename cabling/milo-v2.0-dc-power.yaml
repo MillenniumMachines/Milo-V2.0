@@ -1,0 +1,72 @@
+metadata:
+  title: "Milo V2.0 DC Power"
+  description: |
+    Milo V2.0 provides 48v DC power via a 110-220v to 48v PSU. Power is
+    distributed to the mainboard, directly for the MCU itself, and via the
+    3rd pole of a contactor for powering the motors. The contactor is
+    triggered by an Emergency Stop circuit.
+
+connectors: *common-connectors
+
+cables:
+  VCC:
+    wirecount: 1
+    length: 1
+    colors: [RD]
+    color: BK
+  GND:
+    wirecount: 1
+    length: 1
+    colors: [BK]
+    color: BK
+
+connections:
+  # Motor Power
+  - # PSU to Contactor
+    - 48V-PSU: 4
+    - <--
+    - FT.
+    - VCC.
+    - FT.
+    - -->
+    - CONTACTOR: 5
+
+  - # Contactor to Mainboard
+    - CONTACTOR: 6
+    - <--
+    - FT.
+    - VCC.
+    - FB.
+    - -->
+    - MAINBOARD: 31
+
+
+  # MCU Power
+  - # PSU to Mainboard
+    - 48V-PSU: 6
+    - <--
+    - FT.
+    - VCC.
+    - FB.
+    - -->
+    - MAINBOARD: 32
+
+  - # PSU to Mainboard
+    - 48V-PSU: [7,9]
+    - <--
+    - FT.
+    - GND.
+    - FB.
+    - -->
+    - MAINBOARD: [33,34]
+
+  # External Connections
+  - # Emergency Stop to Contactor
+    - EXT.EMERGENCY-STOP-IN: 1
+    - -->
+    - CONTACTOR: 7
+
+  - # Contactor to PSU GND
+    - CONTACTOR: 8
+    - <--
+    - EXT.EMERGENCY-STOP-OUT: 1

@@ -1,0 +1,217 @@
+metadata:
+  title: "Milo V2.0 Motors, Endstops & Probes"
+  description: |
+    Each endstop and probe has its own voltage source and ground.
+    In some cases, these could be combined to save cabling - for
+    example, using a single ground wire for all endstops and breaking them
+    out nearer to the machine.
+
+connectors:
+  <<: *common-connectors
+
+  # Motors
+  MOTOR: *motor
+
+  # Motor Connectors
+  MOTOR-CNN-A: *motor-connector-a
+  MOTOR-CNN-B: *motor-connector-b
+
+  # Endstops
+  ENDSTOP: *endstop
+
+  # Endstop Connectors
+  ENDSTOP-CNN-A: *endstop-connector-a
+
+  # Probe
+  TOUCHPROBE:
+    type: Touch Probe
+    pincount: 3
+    color: GD
+    ignore_in_bom: true
+    pinlabels: *endstop-pins
+  TOUCHPROBE-A:
+    <<: *endstop-connector-a
+  TOUCHPROBE-B:
+    type: USB-C Connector
+    pincount: 3
+    pinlabels: *endstop-pins
+    color: VT
+
+  # Toolsetter
+  TOOLSETTER:
+    type: Toolsetter
+    pincount: 3
+    color: GD
+    ignore_in_bom: true
+    pinlabels: *endstop-pins
+  TOOLSETTER-A:
+    <<: *endstop-connector-a
+  TOOLSETTER-B:
+    <<: *endstop-connector-a
+
+cables:
+  MOT: *motor-cable
+  STOP: *endstop-cable
+
+connections:
+  # X Motor
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [1-4]
+    - <--
+    - MOTOR-CNN-A.X-MOTOR-A: [1-4]
+
+  - # A Connector to Wire
+    - MOTOR-CNN-A.X-MOTOR-A: [1-4]
+    - <--
+    - FB.
+    - MOT.X-MOT: [1-4]
+
+  - # Wire to B Connector
+    - MOT.X-MOT: [1-4]
+    - MOTOR-CNN-B.X-MOTOR-B: [1-4]
+
+  - # B Connector to Motor
+    - MOTOR-CNN-B.X-MOTOR-B: [1-4]
+    - -->
+    - MOTOR.X-MOTOR: [1-4]
+
+
+  # Y Motor
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [5-8]
+    - <--
+    - MOTOR-CNN-A.Y-MOTOR-A: [1-4]
+
+  - # A Connector to Wire
+    - MOTOR-CNN-A.Y-MOTOR-A: [1-4]
+    - <--
+    - FB.
+    - MOT.Y-MOT: [1-4]
+
+  - # Wire to B Connector
+    - MOT.Y-MOT: [1-4]
+    - MOTOR-CNN-B.Y-MOTOR-B: [1-4]
+
+  - # B Connector to Motor
+    - MOTOR-CNN-B.Y-MOTOR-B: [1-4]
+    - -->
+    - MOTOR.Y-MOTOR: [1-4]
+
+
+  # Z Motor
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [9-12]
+    - <--
+    - MOTOR-CNN-A.Z-MOTOR-A: [1-4]
+
+  - # A Connector to Wire
+    - MOTOR-CNN-A.Z-MOTOR-A: [1-4]
+    - <--
+    - FB.
+    - MOT.Z-MOT: [1-4]
+
+  - # Wire to B Connector
+    - MOT.Z-MOT: [1-4]
+    - MOTOR-CNN-B.Z-MOTOR-B: [1-4]
+
+  - # B Connector to Motor
+    - MOTOR-CNN-B.Z-MOTOR-B: [1-4]
+    - -->
+    - MOTOR.Z-MOTOR: [1-4]
+
+
+  # X Endstop
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [13-15]
+    - <--
+    - ENDSTOP-CNN-A.X-MIN-A: [1-3]
+
+  - # A Connector to Wire
+    - ENDSTOP-CNN-A.X-MIN-A: [1-3]
+    - <--
+    - FA.
+    - STOP.X-STOP: [1-3]
+
+  - # Wire to Endstop
+    - STOP.X-STOP: [1-3]
+    - SOLDERED.
+    - -->
+    - ENDSTOP.X-MIN: [1-3]
+
+  # Y Endstop
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [16-18]
+    - <--
+    - ENDSTOP-CNN-A.Y-MAX-A: [1-3]
+
+  - # A Connector to Wire
+    - ENDSTOP-CNN-A.Y-MAX-A: [1-3]
+    - <--
+    - FA.
+    - STOP.Y-STOP: [1-3]
+
+  - # Wire to Endstop
+    - STOP.Y-STOP: [1-3]
+    - SOLDERED.
+    - -->
+    - ENDSTOP.Y-MAX: [1-3]
+
+  # Z Endstop
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [19-21]
+    - <--
+    - ENDSTOP-CNN-A.Z-MAX-A: [1-3]
+
+  - # A Connector to Wire
+    - ENDSTOP-CNN-A.Z-MAX-A: [1-3]
+    - <--
+    - FA.
+    - STOP.Z-STOP: [1-3]
+
+  - # Wire to Endstop
+    - STOP.Z-STOP: [1-3]
+    - SOLDERED.
+    - -->
+    - ENDSTOP.Z-MAX: [1-3]
+
+  # Touch Probe
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [25-27]
+    - <--
+    - TOUCHPROBE-A: [1-3]
+
+  - # A Connector to Wire
+    - TOUCHPROBE-A: [1-3]
+    - <--
+    - FA.
+    - STOP.PROBE: [1-3]
+
+  - # Wire to B Connector
+    - STOP.PROBE: [1-3]
+    - TOUCHPROBE-B: [1-3]
+
+  - # B Connector to Probe
+    - TOUCHPROBE-B: [1-3]
+    - -->
+    - TOUCHPROBE: [1-3]
+
+  # Toolsetter
+  - # MAINBOARD to A Connector
+    - MAINBOARD: [28-30]
+    - <--
+    - TOOLSETTER-A: [1-3]
+
+  - # A Connector to Wire
+    - TOOLSETTER-A: [1-3]
+    - <--
+    - FA.
+    - STOP.TOOL: [1-3]
+
+  - # Wire to B Connector
+    - STOP.TOOL: [1-3]
+    - TOOLSETTER-B: [1-3]
+
+  - # B Connector to Toolsetter
+    - TOOLSETTER-B: [1-3]
+    - -->
+    - TOOLSETTER: [1-3]

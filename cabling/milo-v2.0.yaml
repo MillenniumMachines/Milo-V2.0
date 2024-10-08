@@ -1,0 +1,237 @@
+# This file is prepended to each cabling file, and defines
+# connectors or templates that can be used across multiple files.
+
+templates:
+  connectors: &common-connectors
+    EMERGENCY-STOP:
+      type: "Emergency Stop"
+      pinlabels: [COM, NC, COM, NC]
+      color: GD
+
+    MAINBOARD:
+      type: Scylla V1.0
+      manufacturer: "BigTreeTech"
+      ignore_in_bom: true
+      show_pincount: false
+      hide_disconnected_pins: true
+      color: GD
+      pinlabels:
+        - X-A1         # 1
+        - X-A2         # 2
+        - X-B1         # 3
+        - X-B2         # 4
+        - Y-A1         # 5
+        - Y-A2         # 6
+        - Y-B1         # 7
+        - Y-B2         # 8
+        - Z-A1         # 9
+        - Z-A2         # 10
+        - Z-B1         # 11
+        - Z-B2         # 12
+        - X-MIN        # 13
+        - X-MIN-GND    # 14
+        - X-MIN-VCC    # 15
+        - Y-MAX        # 16
+        - Y-MAX-GND    # 17
+        - Y-MAX-VCC    # 18
+        - Z-MAX        # 19
+        - Z-MAX-GND    # 20
+        - Z-MAX-VCC    # 21
+        - A-MIN        # 22
+        - A-MIN-GND    # 23
+        - A-MIN-VCC    # 24
+        - PROBE        # 25
+        - PROBE-GND    # 26
+        - PROBE-VCC    # 27
+        - TOOL         # 28
+        - TOOL-GND     # 29
+        - TOOL-VCC     # 30
+        - V-MOT-VCC    # 31
+        - V-MCU-VCC    # 32
+        - V-MOT-GND    # 33
+        - V-MCU-GND    # 34
+        - 485-A        # 35
+        - 485-B        # 36
+
+    VFD:
+      type: SL-3 VFD
+      manufacturer: Shihlin
+      ignore_in_bom: true
+      show_pincount: false
+      hide_disconnected_pins: true
+      color: GD
+      pinlabels:
+        - R
+        - S
+        - T
+        - U
+        - V
+        - W
+        - GND
+        - STF
+        - STR
+        - M0
+        - M1
+        - SD/5
+        - "+10"
+        - "3"
+        - "DA+"
+        - "DB-"
+
+    CONTACTOR:
+      type: 3 Pole AC Contactor with DC Coil
+      pinlabels: [A1, A2, B1, B2, C1, C2, ABC+, ABC-]
+      hide_disconnected_pins: true
+      color: GD
+
+    48V-PSU:
+      type: 48V Power Supply
+      pinlabels: [L, "N", PE, "+48V", "GND", "+48V", "GND", "+48V", "GND"]
+      hide_disconnected_pins: true
+      color: GD
+
+    SPINDLE-CONNECTOR:
+      type: Aircraft Connector
+      pinlabels: [U, V, W, GND]
+      color: VT
+
+    SPINDLE:
+      type: 1.5kW Spindle with Aircraft Connector Socket
+      pinlabels: [U, V, W, GND]
+      ignore_in_bom: true
+      color: GD
+
+    SOCKET:
+      type: IEC 60320 C14
+      pinlabels: [L, "N", PE]
+      color: GD
+
+    EXT:
+      style: simple
+      type: External Connection
+      pincount: 1
+      color: PK
+      show_name: true
+      ignore_in_bom: true
+
+    SOLDERED:
+      style: simple
+      type: Pre-Soldered
+      pincount: 1
+      color: SR
+      ignore_in_bom: true
+
+    WAGO3: &_wago3
+      style: simple
+      type: WAGO 221-413
+      pincount: 1
+      color: CU
+
+    WAGO5:
+      <<: *_wago3
+      type: WAGO 221-415
+
+    FA:
+      style: simple
+      type: Crimp Ferrule
+      subtype: 0.25 mm2
+      pincount: 1
+      color: GY
+
+    FB:
+      style: simple
+      type: Crimp Ferrule
+      subtype: 1.5 mm2
+      pincount: 1
+      color: RD
+
+    FS:
+      style: simple
+      type: Insulated Female Spade
+      subtype: 1.5 mm2
+      pincount: 1
+      color: RD
+
+    FT:
+      style: simple
+      type: Insulated Fork
+      color: RD
+      subtype: 1.5 mm2
+      pincount: 1
+
+  # AC Power
+  ac-pins: &ac-pins ["L", "N", "PE"]
+  ac-colors: &ac-colors ["BN", "BU", "YEGN"]
+  ac-power-cable: &ac-power-cable
+    category: bundle
+    gauge: 1.5 mm2
+    length: 1
+    colors: *ac-colors
+    color: BK
+    wirecount: 3
+    show_equiv: true
+
+  # DC Power
+  dc-pins: &dc-pins ["+48V", "GND"]
+  dc-colors: &dc-colors ["RD", "BK"]
+  dc-power-cable: &dc-power-cable
+    category: bundle
+    gauge: 18 AWG
+    length: 1
+    colors: *dc-colors
+    color: BK
+    wirecount: 2
+    show_equiv: true
+
+  # Motors
+  motor-pins: &motor-pins ["A1", "A2", "B1", "B2"]
+  motor-colors: &motor-colors ["BK", "RD", "GN", "BU"]
+  motor: &motor
+    type: NEMA23
+    color: GD
+    pinlabels: *motor-pins
+    ignore_in_bom: true
+  motor-connector-a: &motor-connector-a
+    type: Screw Terminal
+    color: VT
+    pinlabels: *motor-pins
+  motor-connector-b: &motor-connector-b
+    type: 4 Pin JST
+    subtype: male
+    color: VT
+    pinlabels: *motor-pins
+  motor-cable: &motor-cable
+    category: bundle
+    gauge: 20 AWG
+    length: 2
+    colors: *motor-colors
+    wirecount: 4
+    show_equiv: true
+
+  # Endstops
+  endstop-pins: &endstop-pins ["SIG", "GND", "VCC"]
+  endstop-colors: &endstop-colors ["YE", "BK", "RD"]
+  endstop: &endstop
+    type: Endstop Switch
+    pincount: 3
+    pinlabels: *endstop-pins
+    color: VT
+    ignore_in_bom: true
+  endstop-connector-a: &endstop-connector-a
+    type: 3 Pin JST
+    pinlabels: *endstop-pins
+    color: VT
+  # Endstops are pre-soldered so there is no need for
+  # endstop-connector-b.
+  endstop-connector-b: &endstop-connector-b
+    type: Endstop Switch
+    pincount: 3
+    pinlabels: *endstop-pins
+    color: VT
+  endstop-cable: &endstop-cable
+    category: bundle
+    gauge: 22 AWG
+    length: 3
+    colors: *endstop-colors
+    wirecount: 3
+    show_equiv: true
