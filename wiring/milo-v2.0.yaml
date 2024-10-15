@@ -102,7 +102,7 @@ templates:
       color: GD
 
     SOCKET:
-      type: IEC 60320 C14
+      type: IEC 60320-1 C20 Male, 16/20A
       pinlabels: [L, "N", PE]
       color: GD
 
