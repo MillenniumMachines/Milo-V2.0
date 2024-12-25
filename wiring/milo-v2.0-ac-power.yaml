@@ -1,5 +1,5 @@
 metadata:
-  title: "Milo V2.0 AC Power and Spindle"
+  title: "Milo V2.0 AC Power"
   description: |
     Milo V2.0 provides single phase 110v or 220v AC power to a 24v PSU, a 48v PSU and
     a VFD, for spindle control. The AC power to the VFD and 48v PSU is controlled by
