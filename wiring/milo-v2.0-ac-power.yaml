@@ -1,10 +1,10 @@
 metadata:
   title: "Milo V2.0 AC Power and Spindle"
   description: |
-    Milo V2.0 provides single phase 110v or 220v AC power to a 48v PSU and a VFD,
-    for spindle control. The AC power to the VFD is controlled by a 3-pole contactor,
-    which is triggered by an Emergency Stop circuit. The Spindle is directly connected
-    to the VFD and grounded, with a cable shield for noise reduction.
+    Milo V2.0 provides single phase 110v or 220v AC power to a 24v PSU, a 48v PSU and
+    a VFD, for spindle control. The AC power to the VFD and 48v PSU is controlled by
+    a contactor, which is triggered by an Emergency Stop circuit. The Spindle is
+    directly connected to the VFD and grounded, with a cable shield for noise reduction.
 
 connectors: *common-connectors
 
@@ -37,67 +37,111 @@ connections:
     - AC.AC-BUS: 1
     - FB.
     - -->
-    - WAGO3.AC-L: 1
+    - WAGO5.AC-L: 1
 
   - # N to N WAGO
     - AC.AC-BUS: 2
     - FB.
     - -->
-    - WAGO3.AC-N: 1
+    - WAGO5.AC-N: 1
 
   - # PE to PE WAGO
     - AC.AC-BUS: 3
     - FB.
     - -->
-    - WAGO3.AC-PE: 1
+    - WAGO5.AC-PE: 1
 
-  # 48V Power Supply
-  - # L WAGO3.to Wire
-    - WAGO3.AC-L: 1
-    - <--
-    - FB.
-    - AC.TO-PSU: 1
-  - # N WAGO3.to Wire
-    - WAGO3.AC-N: 1
-    - <--
-    - FB.
-    - AC.TO-PSU: 2
-  - # PE WAGO3.to Wire
-    - WAGO3.AC-PE: 1
-    - <--
-    - FB.
-    - AC.TO-PSU: 3
-
-  - # Wire to PSU
-    - AC.TO-PSU: [1-3]
-    - FT.
-    - -->
-    - 48V-PSU: [1-3]
-
-  # Contactor
+  # 24V PSU
   - # L to Wire
-    - WAGO3.AC-L: 1
+    - WAGO5.AC-L: 1
     - <--
     - FB.
-    - AC-NG.TO-CONTACTOR: 1
+    - AC.TO-24V-PSU: 1
 
   - # N to Wire
-    - WAGO3.AC-N: 1
+    - WAGO5.AC-N: 1
     - <--
     - FB.
-    - AC-NG.TO-CONTACTOR: 2
+    - AC.TO-24V-PSU: 2
+
+  - # PE to Wire
+    - WAGO5.AC-PE: 1
+    - <--
+    - FB.
+    - AC.TO-24V-PSU: 3
+
+  # Contactor, VFD
+  - # L to Wire
+    - WAGO5.AC-L: 1
+    - <--
+    - FB.
+    - AC-NG.TO-CONTACTOR-FOR-VFD: 1
+
+  - # N to Wire
+    - WAGO5.AC-N: 1
+    - <--
+    - FB.
+    - AC-NG.TO-CONTACTOR-FOR-VFD: 2
 
   - # Wire to Contactor
-    - AC-NG.TO-CONTACTOR: [1,2]
+    - AC-NG.TO-CONTACTOR-FOR-VFD: [1,2]
     - FT.
     - -->
-    - CONTACTOR: [1,3]
+    - CONTACTOR: [1,2]
+
+  # Contactor, 48v PSU
+  - # L to Wire
+    - WAGO5.AC-L: 1
+    - <--
+    - FB.
+    - AC-NG.TO-CONTACTOR-FOR-48V-PSU: 1
+
+  - # N to Wire
+    - WAGO5.AC-N: 1
+    - <--
+    - FB.
+    - AC-NG.TO-CONTACTOR-FOR-48V-PSU: 2
+
+  - # Wire to Contactor
+    - AC-NG.TO-CONTACTOR-FOR-48V-PSU: [1,2]
+    - FT.
+    - -->
+    - CONTACTOR: [3,4]
+
 
   # External Connections
 
+  # 24V PSU
+  # Wire to EXT PSU
+  - # 24V PSU Wire to 24V PSU
+    - AC.TO-24V-PSU: [1-3]
+    - FB.
+    - -->
+    - 24V-PSU: [1-3]
+
+  # 48V PSU
+  - # Contactor to PSU Wire
+    - CONTACTOR: [3,4]
+    - <--
+    - FB.
+    - AC.TO-48V-PSU: [1,2]
+
+  - # PE WAGO to 48V PSU Wire
+    - WAGO5.AC-PE: 1
+    - <--
+    - FB.
+    - AC.TO-48V-PSU: 3
+
+  - # 48V PSU Wire to 48V PSU
+    - AC.TO-48V-PSU: [1-3]
+    - FB.
+    - -->
+    - 48V-PSU: [1-3]
+
+
   # VFD Power
   - # Contactor to Wire
-    - CONTACTOR: [2,4]
+    - CONTACTOR: [1,2]
     - <--
     - FB.
     - AC.TO-VFD: [1,2]
@@ -106,33 +150,22 @@ connections:
     - AC.TO-VFD: 1
     - FB.
     - -->
-    - EXT.L-TO-VFD
+    - VFD: 1
 
   - # Wire N to Ext
     - AC.TO-VFD: 2
     - FB.
     - -->
-    - EXT.N-TO-VFD
+    - VFD: 2
 
   - # PE to Wire PE
-    - WAGO3.AC-PE: 1
+    - WAGO5.AC-PE: 1
     - <--
     - FB.
     - AC.TO-VFD: 3
     - FB.
     - -->
-    - EXT.PE-TO-VFD: 3
-
-  # Motor Power
-  -
-    - EXT.+48V-FROM-PSU
-    - -->
-    - CONTACTOR: 5
-
-  -
-    - CONTACTOR: 6
-    - -->
-    - EXT.48V-TO-MAINBOARD-PORT-V-MOT-VCC
+    - VFD: 7
 
   - # Emergency Stop to Contactor
     - EXT.EMERGENCY-STOP-IN: 1

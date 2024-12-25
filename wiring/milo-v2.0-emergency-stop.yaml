@@ -11,7 +11,7 @@ metadata:
 
 connectors:
   <<: *common-connectors
-  A-MIN-A:
+  IO-IN:
     <<: *endstop-connector-a
 
 cables:
@@ -28,8 +28,8 @@ cables:
 
 connections:
   # Emergency Stop Circuit 1
-  - # PSU +48V to Emergency Stop #1
-    - 48V-PSU: 8
+  - # PSU +24V to Emergency Stop #1
+    - 24V-PSU: 9
     - <--
     - FT.
     - ES1.
@@ -44,69 +44,33 @@ connections:
     - ES1.
     - FT.
     - -->
-    - CONTACTOR: 7
+    - CONTACTOR: 8
 
   - # Contactor Trigger ABC- to PSU GND
-    - 48V-PSU: 5
+    - 24V-PSU: 8
     - <--
     - FT.
     - ES1.
     - FT.
     - -->
-    - CONTACTOR: 8
+    - CONTACTOR: 7
 
   # Emergency Stop Circuit 2
-  - # A-MIN-A to Emergency Stop #1
+  - # IO-IN to Emergency Stop #1
     - EMERGENCY-STOP: 3
     - <--
     - FT.
     - ES2.
-    - FT.
-    - -->
-    - A-MIN-A: 3
+    - IO-IN: 1
 
-  - # Emergency Stop #1 to A-MIN-A
+  - # Emergency Stop #1 to IO-IN
     - EMERGENCY-STOP: 4
     - <--
     - FT.
     - ES2.
-    - FT.
-    - -->
-    - A-MIN-A: 1
-  - # Mainboard to A-MIN-A
-    - A-MIN-A: [1-3]
-    - -->
-    - MAINBOARD: [22-24]
+    - IO-IN: 3
 
-  # External Contactor Connections
-  # Motor Power
-  -
-    - EXT.+48V-FROM-PSU
+  - # Mainboard to IO-IN
+    - IO-IN: [1,3]
     - -->
-    - CONTACTOR: 5
-
-  -
-    - CONTACTOR: 6
-    - -->
-    - EXT.48V-TO-MAINBOARD-PORT-V-MOT-VCC
-
-  # VFD Power
-  -
-    - EXT.L-FROM-MAINS
-    - -->
-    - CONTACTOR: 1
-
-  -
-    - CONTACTOR: 2
-    - -->
-    - EXT.L-TO-VFD
-
-  -
-    - EXT.N-FROM-MAINS
-    - -->
-    - CONTACTOR: 3
-
-  -
-    - CONTACTOR: 4
-    - -->
-    - EXT.N-TO-VFD
+    - MAINBOARD: [39,41]

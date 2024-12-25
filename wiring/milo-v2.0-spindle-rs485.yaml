@@ -1,10 +1,10 @@
 metadata:
-  title: "Milo V2.0 Spindle Power and Control"
+  title: "Milo V2.0 Spindle Power and Control (RS485 / Modbus)"
   description: |
-    Milo V2.0 provides single phase 110v or 220v AC power to a 48v PSU and a VFD,
-    for spindle control. The AC power to the VFD is controlled by a 3-pole contactor,
-    which is triggered by an Emergency Stop circuit. The Spindle is directly connected
-    to the VFD and grounded, with a cable shield for noise reduction.
+    Milo V2.0 with the Scylla V1.0 mainboard can control a VFD via RS485, which
+    is the simplest and most reliable way for 2-way communication between the
+    mainboard and the VFD. This setup should be used in most cases if supported
+    by the firmware and the VFD.
 
 connectors: *common-connectors
 
@@ -32,20 +32,6 @@ cables:
     show_equiv: true
 
 connections:
-  # External to VFD Power
-  -
-    - EXT.AC-L: 1
-    - -->
-    - VFD: 1
-  -
-    - EXT.AC-N: 1
-    - -->
-    - VFD: 2
-  -
-    - EXT.AC-PE: 1
-    - -->
-    - VFD: 7
-
   # Spindle
   - # VFD to Spindle
     - VFD: [4-7]
@@ -63,7 +49,7 @@ connections:
 
   # Modbus over RS485
   -
-    - MAINBOARD: [35-36]
+    - MAINBOARD: [37-38]
     - <--
     - FA.
     - MODBUS: [1-2]

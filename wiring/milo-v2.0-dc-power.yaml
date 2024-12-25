@@ -22,17 +22,9 @@ cables:
 
 connections:
   # Motor Power
-  - # PSU to Contactor
-    - 48V-PSU: 4
-    - <--
-    - FT.
-    - VCC.
-    - FT.
-    - -->
-    - CONTACTOR: 5
 
-  - # Contactor to Mainboard
-    - CONTACTOR: 6
+  - # 48V PSU + to V-MOT
+    - 48V-PSU: 4
     - <--
     - FT.
     - VCC.
@@ -40,33 +32,47 @@ connections:
     - -->
     - MAINBOARD: 31
 
-
-  # MCU Power
-  - # PSU to Mainboard
-    - 48V-PSU: 6
-    - <--
-    - FT.
-    - VCC.
-    - FB.
-    - -->
-    - MAINBOARD: 32
-
-  - # PSU to Mainboard
-    - 48V-PSU: [7,9]
+  - # 48V PSU - to V-MOT
+    - 48V-PSU: 5
     - <--
     - FT.
     - GND.
     - FB.
     - -->
-    - MAINBOARD: [33,34]
+    - MAINBOARD: 32
 
-  # External Connections
-  - # Emergency Stop to Contactor
-    - EXT.EMERGENCY-STOP-IN: 1
-    - -->
-    - CONTACTOR: 7
-
-  - # Contactor to PSU GND
-    - CONTACTOR: 8
+  - # 24V PSU + to V-MCU
+    - 24V-PSU: 4
     - <--
-    - EXT.EMERGENCY-STOP-OUT: 1
+    - FT.
+    - VCC.
+    - FB.
+    - -->
+    - MAINBOARD: 33
+
+  - # 24V PSU - to V-MCU
+    - 24V-PSU: 5
+    - <--
+    - FT.
+    - GND.
+    - FB.
+    - -->
+    - MAINBOARD: 34
+
+  - # 24V PSU + to V-MOS
+    - 24V-PSU: 6
+    - <--
+    - FT.
+    - VCC.
+    - FB.
+    - -->
+    - MAINBOARD: 35
+
+  - # 24V PSU - to V-MOS
+    - 24V-PSU: 7
+    - <--
+    - FT.
+    - GND.
+    - FB.
+    - -->
+    - MAINBOARD: 36

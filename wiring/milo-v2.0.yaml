@@ -47,11 +47,23 @@ templates:
         - TOOL-GND     # 29
         - TOOL-VCC     # 30
         - V-MOT-VCC    # 31
-        - V-MCU-VCC    # 32
-        - V-MOT-GND    # 33
+        - V-MOT-GND    # 32
+        - V-MCU-VCC    # 33
         - V-MCU-GND    # 34
-        - 485-A        # 35
-        - 485-B        # 36
+        - V-MOS-VCC    # 35
+        - V-MOS-GND    # 36
+        - 485-A        # 37
+        - 485-B        # 38
+        - IO-IN        # 39
+        - IO-IN-GND    # 40
+        - IO-IN-VCC    # 41
+        - SPDL-EN      # 42
+        - SPDL-DIR     # 43
+        - SPDL-SPD     # 44
+        - SPDL-AVR     # 45
+        - SPDL-GND     # 46
+        - SPDL-COM     # 47
+
 
     VFD:
       type: SL-3 VFD
@@ -81,6 +93,12 @@ templates:
     CONTACTOR:
       type: 3 Pole AC Contactor with DC Coil
       pinlabels: [A1, A2, B1, B2, C1, C2, ABC+, ABC-]
+      hide_disconnected_pins: true
+      color: GD
+
+    24V-PSU:
+      type: 24V Power Supply
+      pinlabels: [L, "N", PE, "+24V", "GND", "+24V", "GND", "+24V", "GND"]
       hide_disconnected_pins: true
       color: GD
 

@@ -1,0 +1,87 @@
+metadata:
+  title: "Milo V2.0 Spindle Power and Control (Enable, Direction and Speed Signals)"
+  description: |
+    Milo V2.0 with the Scylla V1.0 mainboard can control a VFD via digital enable,
+    direction and a digital or analogue speed signal. This setup is more complex
+    than using RS485, and requires more wiring, but is likely to be supported by
+    more VFDs and firmwares.
+
+connectors: *common-connectors
+
+cables:
+  AC: *ac-power-cable
+
+  AC-NG: # AC with no ground
+    <<: *ac-power-cable
+    color: GY
+    wirecount: 2
+
+  ENADIRSPD:
+    wirecount: 3
+    length: 1
+    colors: [RD, YE, GN]
+    color: RDYEGN
+
+  TO-SPINDLE:
+    gauge: 14 AWG
+    length: 1
+    colors: [BN, BU, RD, YEGN]
+    color: BK
+    wirecount: 4
+    shield: true
+    show_equiv: true
+
+# Mainboard:
+#         - SPDL-EN      # 42
+#         - SPDL-DIR     # 43
+#         - SPDL-SPD     # 44
+#         - SPDL-AVR     # 45
+#         - SPDL-GND     # 46
+#         - SPDL-COM     # 47
+
+# VFD:
+#
+#         - R            # 1
+#         - S            # 2
+#         - T            # 3
+#         - U            # 4
+#         - V            # 5
+#         - W            # 6
+#         - GND          # 7
+#         - STF          # 8
+#         - STR          # 9
+#         - M0           # 10
+#         - M1           # 11
+#         - SD/5         # 12
+#         - "+10"        # 13
+#         - "3"          # 14
+#         - "DA+"        # 15
+#         - "DB-"        # 16
+
+connections:
+  # Spindle
+  - # VFD to Spindle
+    - VFD: [4-7]
+    - <--
+    - FB.
+    - TO-SPINDLE: [1-4]
+    - SPINDLE-CONNECTOR: [1-4]
+    - -->
+    - SPINDLE: [1-4]
+  - # Spindle Cable Shield to VFD GND
+    - VFD: 7
+    - <--
+    - SOLDERED.
+    - TO-SPINDLE: s
+
+  # Spindle Enable, Direction and Speed
+  - # VFD Enable to Mainboard
+    - VFD: [8-10]
+    - <--
+    - FB.
+    - ENADIRSPD: [1-3]
+    - FB.
+    - -->
+    - MAINBOARD: [42-44]
+
+
