@@ -68,9 +68,9 @@ connections:
     - <--
     - FT.
     - ES2.
-    - IO-IN: 3
+    - IO-IN: 2
 
   - # Mainboard to IO-IN
-    - IO-IN: [1,3]
+    - IO-IN: [1,2]
     - -->
     - MAINBOARD: [39,41]
