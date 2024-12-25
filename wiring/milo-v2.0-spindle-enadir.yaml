@@ -23,7 +23,7 @@ cables:
     color: RDYE
 
   TO-SPINDLE:
-    gauge: 14 AWG
+    gauge: 16 AWG
     length: 1
     colors: [BN, BU, RD, YEGN]
     color: BK
