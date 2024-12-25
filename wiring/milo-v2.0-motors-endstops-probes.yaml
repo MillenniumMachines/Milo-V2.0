@@ -1,5 +1,5 @@
 metadata:
-  title: "Milo V2.0 Motors, Endstops & Probes"
+  title: "Milo V2.0 Motors, Endstops and Probes"
   description: |
     Each endstop and probe has its own voltage source and ground.
     In some cases, these could be combined to save cabling - for
