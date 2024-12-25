@@ -16,11 +16,11 @@ cables:
     color: GY
     wirecount: 2
 
-  ENADIRSPD:
-    wirecount: 3
+  SPINDLE-CTRL:
+    wirecount: 5
     length: 1
-    colors: [RD, YE, GN]
-    color: RDYEGN
+    colors: [RD, YE, GN, BU, BK]
+    color: RDYE
 
   TO-SPINDLE:
     gauge: 14 AWG
@@ -71,17 +71,19 @@ connections:
   - # Spindle Cable Shield to VFD GND
     - VFD: 7
     - <--
+    - FB.
+    - --
     - SOLDERED.
     - TO-SPINDLE: s
 
   # Spindle Enable, Direction and Speed
   - # VFD Enable to Mainboard
-    - VFD: [8-10]
+    - VFD: [8,9,12,13,14]
     - <--
     - FB.
-    - ENADIRSPD: [1-3]
+    - SPINDLE-CTRL: [1-5]
     - FB.
     - -->
-    - MAINBOARD: [42-44]
+    - MAINBOARD: [42,43,44,45,47]
 
 

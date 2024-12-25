@@ -44,6 +44,8 @@ connections:
   - # Spindle Cable Shield to VFD GND
     - VFD: 7
     - <--
+    - FB.
+    - --
     - SOLDERED.
     - TO-SPINDLE: s
 

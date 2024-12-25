@@ -66,7 +66,7 @@ templates:
 
 
     VFD:
-      type: SL-3 VFD
+      type: SL3-021-1.5K
       manufacturer: Shihlin
       ignore_in_bom: true
       show_pincount: false
@@ -84,14 +84,14 @@ templates:
         - STR
         - M0
         - M1
-        - SD/5
-        - "+10"
         - "3"
+        - "+10"
+        - SD/5
         - "DA+"
         - "DB-"
 
     CONTACTOR:
-      type: 3 Pole AC Contactor with DC Coil
+      type: AC Contactor with 24V DC Coil
       pinlabels: [A1, A2, B1, B2, C1, C2, ABC+, ABC-]
       hide_disconnected_pins: true
       color: GD
@@ -114,7 +114,7 @@ templates:
       color: VT
 
     SPINDLE:
-      type: 1.5kW Spindle with Aircraft Connector Socket
+      type: 1.5kW Spindle with Aircraft Connector
       pinlabels: [U, V, W, GND]
       ignore_in_bom: true
       color: GD
