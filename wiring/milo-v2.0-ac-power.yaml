@@ -28,22 +28,36 @@ connections:
     - SOCKET: [1-3]
     - <--
     - FS.
-    - AC.AC-BUS: [1-3]
+    - AC.AC-INPUT: [1-3]
 
-  - # L to L WAGO
-    - AC.AC-BUS: 1
+  # AC Bus L and N to MCB
+  - # L to MCB
+    - AC.AC-INPUT: [1-2]
+    - FS.
+    - -->
+    - MCB: [1-2]
+
+  # MCB to AC Bus
+  -
+    - MCB: [1-2]
+    - <--
+    - MS.
+    - AC-NG.AC-BUS: [1-2]
+
+  # AC Bus to WAGO
+  - # L to WAGO L
+    - AC-NG.AC-BUS: 1
     - FB.
     - -->
     - WAGO5.AC-L: 1
-
-  - # N to N WAGO
-    - AC.AC-BUS: 2
+  - # N to WAGO N
+    - AC-NG.AC-BUS: 2
     - FB.
     - -->
     - WAGO5.AC-N: 1
 
   - # PE to PE WAGO
-    - AC.AC-BUS: 3
+    - AC.AC-INPUT: 3
     - FB.
     - -->
     - WAGO5.AC-PE: 1

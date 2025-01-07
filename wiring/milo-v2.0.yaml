@@ -90,6 +90,11 @@ templates:
         - "DA+"
         - "DB-"
 
+    MCB:
+      type: 2-Pole Miniature Circuit Breaker
+      pinlabels: [L, N]
+      color: GD
+
     CONTACTOR:
       type: AC Contactor with 24V DC Coil
       pinlabels: [A1, A2, B1, B2, C1, C2, ABC+, ABC-]
@@ -166,6 +171,13 @@ templates:
     FS:
       style: simple
       type: Insulated Female Spade
+      subtype: 1.5 mm2
+      pincount: 1
+      color: RD
+
+    MS:
+      style: simple
+      type: Insulated Male Spade
       subtype: 1.5 mm2
       pincount: 1
       color: RD
