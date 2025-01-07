@@ -1,10 +1,7 @@
 metadata:
   title: "Milo V2.0 Spindle Power and Control (Enable, Direction and Speed Signals)"
   description: |
-    Milo V2.0 with the Scylla V1.0 mainboard can control a VFD via digital enable,
-    direction and a digital or analogue speed signal. This setup is more complex
-    than using RS485, and requires more wiring, but is likely to be supported by
-    more VFDs and firmwares.
+    Milo V2.0 with the Scylla V1.0 mainboard can control a VFD via digital enable, direction and a digital or analogue speed signal. This setup is more complex than using RS485, and requires more wiring, but can support more VFDs and firmwares.
 
 connectors: *common-connectors
 

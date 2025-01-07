@@ -1,10 +1,7 @@
 metadata:
   title: "Milo V2.0 AC Power"
   description: |
-    Milo V2.0 provides single phase 110v or 220v AC power to a 24v PSU, a 48v PSU and
-    a VFD, for spindle control. The AC power to the VFD and 48v PSU is controlled by
-    a contactor, which is triggered by an Emergency Stop circuit. The Spindle is
-    directly connected to the VFD and grounded, with a cable shield for noise reduction.
+    Milo V2.0 provides single phase 110v or 220v AC power to a 24v PSU, a 48v PSU and a VFD, for spindle control. The AC power to the VFD and 48v PSU is controlled by a contactor, which is triggered by an Emergency Stop circuit. The Spindle is directly connected to the VFD and grounded, with a cable shield for noise reduction.
 
 connectors: *common-connectors
 

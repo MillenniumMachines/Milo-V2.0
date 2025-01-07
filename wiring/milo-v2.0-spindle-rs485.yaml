@@ -1,10 +1,7 @@
 metadata:
   title: "Milo V2.0 Spindle Power and Control (RS485 / Modbus)"
   description: |
-    Milo V2.0 with the Scylla V1.0 mainboard can control a VFD via RS485, which
-    is the simplest and most reliable way for 2-way communication between the
-    mainboard and the VFD. This setup should be used in most cases if supported
-    by the firmware and the VFD.
+    Milo V2.0 can control a VFD via RS485, which is the simplest and most reliable way for 2-way communication between the mainboard and the VFD. This setup should be used in most cases if supported by the firmware and the VFD.
 
 connectors: *common-connectors
 

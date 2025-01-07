@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Get directory where the script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+YAML_DIR="$( cd "$SCRIPT_DIR/.." && pwd )"
+OUTPUT_DIR="$SCRIPT_DIR/.."
+
 # Check required tools
 for cmd in wireviz yq; do
     if ! command -v "$cmd" >/dev/null 2>&1; then
@@ -9,12 +14,13 @@ for cmd in wireviz yq; do
     fi
 done
 
-# Generate diagrams
+# Change to YAML directory and generate diagrams
 echo "Generating wiring diagrams..."
+cd "$YAML_DIR"
 wireviz -f hp -p milo-v2.0.yaml milo-v2.0-*.yaml
 
-# Create index.html header
-cat > index.html << 'EOF'
+# Create index.html header in script directory
+cat > "$OUTPUT_DIR/index.html" << 'EOF'
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +38,11 @@ for yaml in milo-v2.0-*.yaml; do
     # Combine anchor file with target file and extract title
     title=$({ cat milo-v2.0.yaml; echo; cat "$yaml"; } | yq '.metadata.title' 2>/dev/null || basename "$yaml" .yaml)
     html_file="${yaml%.yaml}.html"
-    echo "<a href=\"$html_file\" class=\"list-group-item list-group-item-action\">$title</a>" >> index.html
+    echo "            <a href=\"$html_file\" class=\"list-group-item list-group-item-action\">$title</a>" >> index.html
 done
 
 # Close HTML
-cat >> index.html << 'EOF'
+cat >> "$OUTPUT_DIR/index.html" << 'EOF'
         </div>
     </div>
 </body>

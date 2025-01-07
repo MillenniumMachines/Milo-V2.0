@@ -1,10 +1,7 @@
 metadata:
   title: "Milo V2.0 Motors, Endstops and Probes"
   description: |
-    Each endstop and probe has its own voltage source and ground.
-    In some cases, these could be combined to save cabling - for
-    example, using a single ground wire for all endstops and breaking them
-    out nearer to the machine.
+    Each endstop and probe has its own voltage source and ground. In some cases, these could be combined to save cabling - for example, using a single ground wire for all endstops and breaking them out nearer to the machine. This diagram shows all connections separately for clarity, but unless your endstops require power (for example, using inductive sensors), you will not need to provide a separate voltage source for each.
 
 connectors:
   <<: *common-connectors
