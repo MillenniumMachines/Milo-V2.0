@@ -23,7 +23,7 @@ cables:
 connections:
   # Emergency Stop Circuit 1
   - # PSU GND to Emergency Stop #1
-    - 24V-PSU: 9
+    - 24V-PSU: 8
     - <--
     - FT.
     - ES1.
@@ -41,7 +41,7 @@ connections:
     - CONTACTOR: 7
 
   - # Contactor Trigger ABC+ to Mainboard SafetyNet Relay
-    - 24V-PSU: 8
+    - 24V-PSU: 9
     - <--
     - FT.
     - ES1.
