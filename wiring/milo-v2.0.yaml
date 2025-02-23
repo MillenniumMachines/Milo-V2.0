@@ -63,6 +63,8 @@ templates:
         - SPDL-AVR     # 45
         - SPDL-GND     # 46
         - SPDL-COM     # 47
+        - RELAY-COM    # 48
+        - RELAY-NO     # 49
 
 
     VFD:
