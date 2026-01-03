@@ -12,4 +12,4 @@ Milo V2 uses a moving-table X-axis, while its sibling Miley V2 features a statio
 ⚠️ IMPORTANT: ELECTRONICS NOT INCLUDED ⚠️
 
 This repository does NOT include electronics.
-To build the electronics system, you must use the Universal Electronics Box repository.
+To build the electronics system, you must use the [Universal Electronics Box](https://github.com/MillenniumMachines/Universal-Electronics-Box) repository.
