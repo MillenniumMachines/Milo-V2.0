@@ -1,7 +1,7 @@
 # Milo-V2
 Millennium Machines Milo V2.0
 <p align="center">
-  <img height="500" src="https://github.com/MillenniumMachines/Milo-V2.0/Images/Milo_Miley.png">
+  <img height="500" src="https://github.com/MillenniumMachines/Milo-V2.0/blob/main/Images/Milo_Miley.png">
 </p>
 ## Known Issues
 We should avoid these issues from Milo V1.5 before releasing Milo V2.0
