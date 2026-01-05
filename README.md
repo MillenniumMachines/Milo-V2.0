@@ -1,7 +1,7 @@
 # Milo-V2
 Millennium Machines Milo V2.0
 <p align="center">
-  <img height="500" src="https://github.com/MillenniumMachines/Milo-V2.0/blob/main/Images/Milo_Miley.png">
+  <img height="500" src="https://github.com/MillenniumMachines/Milo-V2.0/blob/main/Images/Milo-Miley.png">
 </p>
 Millennium Machines Milo V2 is the next evolution of our open-source desktop CNC mill, building on the OpenBuilds MiniMill concept with major upgrades in size, rigidity, and customization. Designed for DIY builders, Milo V2 is More than capable of cutting aluminum (and steel if you're smart about it) while excelling at composites, woods, and plastics.
 
